@@ -10,6 +10,12 @@ import {useNavigate} from 'react-router-dom'
 const NavBar = observer(() => {
     const {user} = useContext(Context)
     const navigate = useNavigate()
+
+    const logOut = () => {
+        user.setUser({})
+        user.setIsAuth(false)
+    }
+
     return (
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
             <Container>
@@ -25,15 +31,15 @@ const NavBar = observer(() => {
                             </Button>
                             <Button
                                 variant='outline-light'
-                                className='ml-2'
-                                onClick={() => navigate(LOGIN_ROUTE)}
+                                className='mx-2'
+                                onClick={() => logOut()}
                             >
                                 Logout
                             </Button>
                         </Nav>
                         :
                         <Nav className='ml-auto' style={{color:'white'}}>
-                            <Button variant='outline-light' onClick={() => user.setIsAuth(true)}>Registration</Button>
+                            <Button variant='outline-light' onClick={() => navigate(LOGIN_ROUTE)}>Registration</Button>
                         </Nav>
                 }
 

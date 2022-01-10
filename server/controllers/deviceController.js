@@ -13,7 +13,7 @@ class DeviceController {
             const device = await Device.create({name, price, brandId, typeId, img: fileName})
 
             if(info){
-                info.json.parse(info)
+                info = JSON.parse(info)
                 info.forEach(i =>
                 DeviceInfo.create({
                     title: i.title,
@@ -22,7 +22,6 @@ class DeviceController {
                 }))
 
             }
-
             return res.json(device)
         }catch (e) {
             next(ApiError.badRequest(e.message))
